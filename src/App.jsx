@@ -20,12 +20,12 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-[#FAF6EF] flex flex-col">
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-5xl mx-auto px-4 flex items-center justify-between h-14">
           {/* Wordmark */}
-          <span className="font-bold text-[#7F77DD] text-lg tracking-tight select-none">
-            Vow<span className="text-[#F4C0D1]">Flow</span>
+          <span className="font-bold text-[#7D9E7A] text-lg tracking-tight select-none">
+            Vow<span className="text-[#C9A84C]">Flow</span>
           </span>
 
           {/* Desktop nav */}
@@ -38,8 +38,8 @@ export default function App() {
                 className={({ isActive }) =>
                   `text-sm font-medium px-3 py-1.5 rounded-full transition-colors ${
                     isActive
-                      ? "bg-[#7F77DD] text-white"
-                      : "text-gray-500 hover:text-[#7F77DD] hover:bg-[#7F77DD]/10"
+                      ? "bg-[#7D9E7A] text-white"
+                      : "text-gray-500 hover:text-[#7D9E7A] hover:bg-[#7D9E7A]/10"
                   }`
                 }
               >
@@ -78,8 +78,8 @@ export default function App() {
                 className={({ isActive }) =>
                   `text-sm font-medium px-3 py-2 rounded-xl transition-colors ${
                     isActive
-                      ? "bg-[#7F77DD] text-white"
-                      : "text-gray-500 hover:bg-[#7F77DD]/10 hover:text-[#7F77DD]"
+                      ? "bg-[#7D9E7A] text-white"
+                      : "text-gray-500 hover:bg-[#7D9E7A]/10 hover:text-[#7D9E7A]"
                   }`
                 }
               >

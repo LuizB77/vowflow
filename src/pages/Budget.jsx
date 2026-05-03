@@ -29,7 +29,7 @@ function EditAllocatedModal({ category, onSave, onClose }) {
           value={val}
           onChange={(e) => setVal(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSave()}
-          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD] mb-4"
+          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A] mb-4"
           placeholder="e.g. 5000"
           autoFocus
         />
@@ -39,7 +39,7 @@ function EditAllocatedModal({ category, onSave, onClose }) {
             Cancel
           </button>
           <button onClick={handleSave}
-            className="flex-1 py-2 rounded-lg bg-[#7F77DD] text-white font-semibold text-sm hover:bg-[#6a62c4]">
+            className="flex-1 py-2 rounded-lg bg-[#7D9E7A] text-white font-semibold text-sm hover:bg-[#5E8260]">
             Save
           </button>
         </div>
@@ -71,20 +71,20 @@ function AddExpenseModal({ category, onSave, onClose }) {
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
             placeholder="Description (e.g. Venue deposit)"
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]"
           />
           <input
             type="number"
             value={form.amount}
             onChange={(e) => setForm({ ...form, amount: e.target.value })}
             placeholder="Amount ($)"
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]"
           />
           <input
             type="date"
             value={form.date}
             onChange={(e) => setForm({ ...form, date: e.target.value })}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]"
           />
         </div>
         <div className="flex gap-3 mt-5">
@@ -93,7 +93,7 @@ function AddExpenseModal({ category, onSave, onClose }) {
             Cancel
           </button>
           <button onClick={handleSave}
-            className="flex-1 py-2 rounded-lg bg-[#7F77DD] text-white font-semibold text-sm hover:bg-[#6a62c4]">
+            className="flex-1 py-2 rounded-lg bg-[#7D9E7A] text-white font-semibold text-sm hover:bg-[#5E8260]">
             Log Expense
           </button>
         </div>
@@ -111,7 +111,7 @@ function CategoryCard({ cat, expenses, onEditAllocated, onAddExpense, onDeleteEx
   const pct       = cat.allocated > 0 ? Math.min(100, (spent / cat.allocated) * 100) : 0;
 
   return (
-    <div className={`bg-white rounded-2xl shadow-sm border ${over ? "border-red-200" : "border-gray-100"} p-5 space-y-3`}>
+    <div className={`bg-white rounded-2xl shadow-sm border ${over ? "border-red-200" : "border-[#E8D9C4]"} p-5 space-y-3`}>
       {/* top row */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -133,24 +133,24 @@ function CategoryCard({ cat, expenses, onEditAllocated, onAddExpense, onDeleteEx
         </div>
         <div>
           <p className="text-gray-400 text-xs">Remaining</p>
-          <p className={`font-semibold ${over ? "text-red-500" : "text-green-600"}`}>{fmt(remaining)}</p>
+          <p className={`font-semibold ${over ? "text-red-500" : "text-[#7D9E7A]"}`}>{fmt(remaining)}</p>
         </div>
       </div>
 
       {/* progress bar */}
       <div className="w-full bg-gray-100 rounded-full h-1.5">
-        <div className={`h-1.5 rounded-full transition-all ${over ? "bg-red-400" : "bg-[#7F77DD]"}`}
+        <div className={`h-1.5 rounded-full transition-all ${over ? "bg-red-400" : "bg-[#7D9E7A]"}`}
           style={{ width: `${pct}%` }} />
       </div>
 
       {/* actions */}
       <div className="flex gap-2">
         <button onClick={onEditAllocated}
-          className="flex-1 text-xs border border-gray-200 text-gray-500 rounded-lg py-1.5 hover:border-[#7F77DD] hover:text-[#7F77DD] transition-colors">
+          className="flex-1 text-xs border border-gray-200 text-gray-500 rounded-lg py-1.5 hover:border-[#7D9E7A] hover:text-[#7D9E7A] transition-colors">
           Edit Budget
         </button>
         <button onClick={onAddExpense}
-          className="flex-1 text-xs bg-[#7F77DD] text-white rounded-lg py-1.5 hover:bg-[#6a62c4] transition-colors">
+          className="flex-1 text-xs bg-[#7D9E7A] text-white rounded-lg py-1.5 hover:bg-[#5E8260] transition-colors">
           + Log Expense
         </button>
       </div>
@@ -158,7 +158,7 @@ function CategoryCard({ cat, expenses, onEditAllocated, onAddExpense, onDeleteEx
       {/* expense log toggle */}
       {expenses.length > 0 && (
         <button onClick={() => setOpen((p) => !p)}
-          className="text-xs text-[#7F77DD] hover:underline">
+          className="text-xs text-[#7D9E7A] hover:underline">
           {open ? "Hide" : `Show ${expenses.length} expense${expenses.length > 1 ? "s" : ""}`} ▾
         </button>
       )}
@@ -237,13 +237,13 @@ export default function Budget() {
       <h1 className="text-2xl font-bold text-gray-800">💰 Budget</h1>
 
       {/* ── Total bar ── */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-3">
+      <div className="bg-white rounded-2xl shadow-sm border border-[#E8D9C4] p-5 space-y-3">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
           {[
             { label: "Total Budget",  val: totalBudget,    color: "text-gray-800" },
-            { label: "Allocated",     val: totalAllocated, color: "text-[#7F77DD]" },
+            { label: "Allocated",     val: totalAllocated, color: "text-[#7D9E7A]" },
             { label: "Spent",         val: totalSpent,     color: "text-rose-500" },
-            { label: "Remaining",     val: totalRemaining, color: totalRemaining < 0 ? "text-red-500" : "text-green-600" },
+            { label: "Remaining",     val: totalRemaining, color: totalRemaining < 0 ? "text-red-500" : "text-[#7D9E7A]" },
           ].map(({ label, val, color }) => (
             <div key={label}>
               <p className="text-xs text-gray-400 uppercase tracking-wide">{label}</p>
@@ -252,7 +252,7 @@ export default function Budget() {
           ))}
         </div>
         <div className="w-full bg-gray-100 rounded-full h-2">
-          <div className="bg-[#7F77DD] h-2 rounded-full transition-all"
+          <div className="bg-[#7D9E7A] h-2 rounded-full transition-all"
             style={{ width: `${Math.min(100, (totalSpent / (totalBudget || 1)) * 100)}%` }} />
         </div>
         <p className="text-xs text-gray-400 text-right">
@@ -262,7 +262,7 @@ export default function Budget() {
 
       {/* ── Donut chart ── */}
       {donutData.length > 0 && (
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div className="bg-white rounded-2xl shadow-sm border border-[#E8D9C4] p-5">
           <h2 className="font-semibold text-gray-700 mb-4">Budget Allocation</h2>
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>

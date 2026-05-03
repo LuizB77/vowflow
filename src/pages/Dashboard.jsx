@@ -18,13 +18,13 @@ function ProgressRing({ pct = 0, size = 100, stroke = 10 }) {
       <circle cx={size / 2} cy={size / 2} r={r} fill="none"
         stroke="#E5E7EB" strokeWidth={stroke} />
       <circle cx={size / 2} cy={size / 2} r={r} fill="none"
-        stroke="#7F77DD" strokeWidth={stroke}
+        stroke="#7D9E7A" strokeWidth={stroke}
         strokeDasharray={circ} strokeDashoffset={offset}
         strokeLinecap="round"
         style={{ transform: "rotate(-90deg)", transformOrigin: "50% 50%", transition: "stroke-dashoffset 0.5s ease" }}
       />
       <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle"
-        className="text-sm font-bold" fill="#7F77DD" fontSize={size * 0.18}>
+        className="text-sm font-bold" fill="#7D9E7A" fontSize={size * 0.18}>
         {pct}%
       </text>
     </svg>
@@ -58,7 +58,7 @@ function CreateWeddingModal({ onClose, onCreated }) {
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
-        <h2 className="text-2xl font-bold text-[#7F77DD] mb-1">💍 New Wedding</h2>
+        <h2 className="text-2xl font-bold text-[#7D9E7A] mb-1">💍 New Wedding</h2>
         <p className="text-gray-500 text-sm mb-5">Fill in the basics to get started.</p>
 
         {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
@@ -68,24 +68,24 @@ function CreateWeddingModal({ onClose, onCreated }) {
             <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Partner 1 Name</label>
             <input name="coupleName" value={form.coupleName} onChange={handleChange}
               placeholder="e.g. Sofia"
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]" />
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]" />
           </div>
           <div>
             <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Partner 2 Name</label>
             <input name="partnerName" value={form.partnerName} onChange={handleChange}
               placeholder="e.g. Marco"
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]" />
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]" />
           </div>
           <div>
             <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Wedding Date</label>
             <input name="weddingDate" type="date" value={form.weddingDate} onChange={handleChange}
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]" />
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]" />
           </div>
           <div>
             <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Total Budget ($)</label>
             <input name="budget" type="number" value={form.budget} onChange={handleChange}
               placeholder="e.g. 25000"
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]" />
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]" />
           </div>
         </div>
 
@@ -97,7 +97,7 @@ function CreateWeddingModal({ onClose, onCreated }) {
             </button>
           )}
           <button onClick={handleSubmit}
-            className="flex-1 py-2 rounded-lg bg-[#7F77DD] text-white font-semibold text-sm hover:bg-[#6a62c4] transition-colors">
+            className="flex-1 py-2 rounded-lg bg-[#7D9E7A] text-white font-semibold text-sm hover:bg-[#5E8260] transition-colors">
             Create Wedding 💍
           </button>
         </div>
@@ -158,7 +158,7 @@ export default function Dashboard() {
       <div className="flex flex-col items-center justify-center mt-24 gap-4">
         <p className="text-gray-400 text-lg">No wedding yet.</p>
         <button onClick={() => setShowModal(true)}
-          className="bg-[#7F77DD] text-white px-6 py-2.5 rounded-full font-semibold hover:bg-[#6a62c4]">
+          className="bg-[#7D9E7A] text-white px-6 py-2.5 rounded-full font-semibold hover:bg-[#5E8260]">
           + Create Your First Wedding
         </button>
         {showModal && <CreateWeddingModal onCreated={handleCreated} />}
@@ -192,14 +192,14 @@ export default function Dashboard() {
         <div className="flex items-center gap-2 flex-wrap">
           {store.weddings.length > 1 && (
             <select value={store.activeWeddingId} onChange={handleSelectWedding}
-              className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#7F77DD]">
+              className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]">
               {store.weddings.map((w) => (
                 <option key={w.id} value={w.id}>{w.coupleName} & {w.partnerName}</option>
               ))}
             </select>
           )}
           <button onClick={() => setShowModal(true)}
-            className="text-sm bg-[#7F77DD] text-white px-4 py-1.5 rounded-full hover:bg-[#6a62c4] font-medium">
+            className="text-sm bg-[#7D9E7A] text-white px-4 py-1.5 rounded-full hover:bg-[#5E8260] font-medium">
             + New Wedding
           </button>
           {wedding && (
@@ -216,19 +216,19 @@ export default function Dashboard() {
         <>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {/* Countdown */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
-              <p className="text-5xl font-extrabold text-[#7F77DD]">{daysAway}</p>
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#E8D9C4] flex flex-col items-center justify-center text-center">
+              <p className="text-5xl font-extrabold text-[#7D9E7A]">{daysAway}</p>
               <p className="text-gray-500 text-sm mt-1">days to go 🗓️</p>
             </div>
 
             {/* Progress ring */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col items-center justify-center gap-2">
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#E8D9C4] flex flex-col items-center justify-center gap-2">
               <ProgressRing pct={pct} size={90} stroke={9} />
               <p className="text-gray-500 text-sm">{doneTasks}/{totalTasks} tasks done</p>
             </div>
 
             {/* Budget snapshot */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 space-y-2">
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#E8D9C4] space-y-2">
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Budget</p>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-500">Total</span>
@@ -243,7 +243,7 @@ export default function Dashboard() {
                 <span className="font-semibold text-rose-500">${totalSpent.toLocaleString()}</span>
               </div>
               <div className="w-full bg-gray-100 rounded-full h-1.5 mt-1">
-                <div className="bg-[#7F77DD] h-1.5 rounded-full transition-all"
+                <div className="bg-[#7D9E7A] h-1.5 rounded-full transition-all"
                   style={{ width: `${Math.min(100, (totalSpent / (wedding.budget || 1)) * 100)}%` }} />
               </div>
               <p className="text-xs text-gray-400 text-right">${remaining.toLocaleString()} remaining</p>
@@ -251,11 +251,11 @@ export default function Dashboard() {
           </div>
 
           {/* ── Next tasks ── */}
-          <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#E8D9C4]">
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-semibold text-gray-700">🗒️ Up Next</h2>
               <button onClick={() => navigate("/checklist")}
-                className="text-xs text-[#7F77DD] hover:underline">View all →</button>
+                className="text-xs text-[#7D9E7A] hover:underline">View all →</button>
             </div>
             {nextTasks.length === 0 ? (
               <p className="text-sm text-gray-400">
@@ -267,7 +267,7 @@ export default function Dashboard() {
               <ul className="space-y-2">
                 {nextTasks.map((t) => (
                   <li key={t.id} className="flex items-center gap-3 text-sm text-gray-700">
-                    <span className="w-2 h-2 rounded-full bg-[#F4C0D1] flex-shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-[#E8C4B8] flex-shrink-0" />
                     {t.task}
                     <span className="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
                       {t.category}

@@ -41,7 +41,7 @@ function TypingDots() {
   return (
     <div className="flex items-center gap-1 px-4 py-3">
       {[0, 1, 2].map((i) => (
-        <span key={i} className="w-2 h-2 rounded-full bg-[#7F77DD] animate-bounce"
+        <span key={i} className="w-2 h-2 rounded-full bg-[#7D9E7A] animate-bounce"
           style={{ animationDelay: `${i * 0.15}s` }} />
       ))}
     </div>
@@ -132,7 +132,7 @@ export default function AIAssistant() {
         <div className="flex flex-wrap gap-2 flex-shrink-0">
           {SUGGESTIONS.map((s) => (
             <button key={s} onClick={() => sendMessage(s)}
-              className="text-xs px-3 py-1.5 rounded-full bg-[#F4C0D1]/40 text-[#7F77DD] font-medium hover:bg-[#F4C0D1]/70 transition-colors">
+              className="text-xs px-3 py-1.5 rounded-full bg-[#E8C4B8]/40 text-[#7D9E7A] font-medium hover:bg-[#E8C4B8]/70 transition-colors">
               {s}
             </button>
           ))}
@@ -140,17 +140,17 @@ export default function AIAssistant() {
       )}
 
       {/* ── Message thread ── */}
-      <div className="flex-1 overflow-y-auto bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-4 min-h-0">
+      <div className="flex-1 overflow-y-auto bg-white rounded-2xl border border-[#E8D9C4] shadow-sm p-4 space-y-4 min-h-0">
         {messages.map((m, i) => (
           <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
             {m.role === "assistant" && (
-              <div className="w-7 h-7 rounded-full bg-[#7F77DD] text-white text-xs flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+              <div className="w-7 h-7 rounded-full bg-[#7D9E7A] text-white text-xs flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
                 ✨
               </div>
             )}
             <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap ${
               m.role === "user"
-                ? "bg-[#7F77DD] text-white rounded-tr-sm"
+                ? "bg-[#7D9E7A] text-white rounded-tr-sm"
                 : "bg-gray-50 text-gray-700 rounded-tl-sm border border-gray-100"
             }`}>
               {m.content}
@@ -160,7 +160,7 @@ export default function AIAssistant() {
 
         {loading && (
           <div className="flex justify-start">
-            <div className="w-7 h-7 rounded-full bg-[#7F77DD] text-white text-xs flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+            <div className="w-7 h-7 rounded-full bg-[#7D9E7A] text-white text-xs flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
               ✨
             </div>
             <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-sm">
@@ -182,13 +182,13 @@ export default function AIAssistant() {
           onKeyDown={handleKeyDown}
           placeholder="Ask anything about your wedding…"
           rows={1}
-          className="flex-1 border border-gray-200 rounded-2xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#7F77DD] max-h-32 overflow-y-auto"
+          className="flex-1 border border-gray-200 rounded-2xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#7D9E7A] max-h-32 overflow-y-auto"
           style={{ fieldSizing: "content" }}
         />
         <button
           onClick={() => sendMessage()}
           disabled={!input.trim() || loading}
-          className="w-11 h-11 rounded-full bg-[#7F77DD] text-white flex items-center justify-center hover:bg-[#6a62c4] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
+          className="w-11 h-11 rounded-full bg-[#7D9E7A] text-white flex items-center justify-center hover:bg-[#5E8260] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 translate-x-0.5">
             <path d="M2 21l21-9L2 3v7l15 2-15 2z" />

@@ -7,7 +7,7 @@ const STATUSES   = ["contacted","booked","paid"];
 const STATUS_STYLES = {
   contacted: { badge: "bg-gray-100 text-gray-500",       dot: "bg-gray-400",  label: "Contacted" },
   booked:    { badge: "bg-amber-100 text-amber-600",     dot: "bg-amber-400", label: "Booked"    },
-  paid:      { badge: "bg-green-100 text-green-600",     dot: "bg-green-400", label: "Paid"      },
+  paid:      { badge: "bg-[#E8F0E6] text-[#4A7A47]",     dot: "bg-green-400", label: "Paid"      },
 };
 
 function fmt(n) {
@@ -39,21 +39,21 @@ function VendorModal({ initial = EMPTY_FORM, title, onSave, onClose }) {
             <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Vendor Name *</label>
             <input value={form.name} onChange={(e) => set("name", e.target.value)}
               placeholder="e.g. The Grand Venue"
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]" />
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]" />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Category</label>
               <select value={form.category} onChange={(e) => set("category", e.target.value)}
-                className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]">
+                className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]">
                 {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
               </select>
             </div>
             <div>
               <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Status</label>
               <select value={form.status} onChange={(e) => set("status", e.target.value)}
-                className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]">
+                className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]">
                 {STATUSES.map((s) => <option key={s} value={s}>{STATUS_STYLES[s].label}</option>)}
               </select>
             </div>
@@ -63,21 +63,21 @@ function VendorModal({ initial = EMPTY_FORM, title, onSave, onClose }) {
             <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Contact (phone / email)</label>
             <input value={form.contact} onChange={(e) => set("contact", e.target.value)}
               placeholder="e.g. 555-123-4567"
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]" />
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]" />
           </div>
 
           <div>
             <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Price Quote ($)</label>
             <input type="number" value={form.quote} onChange={(e) => set("quote", e.target.value)}
               placeholder="e.g. 3500"
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD]" />
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A]" />
           </div>
 
           <div>
             <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Notes</label>
             <textarea value={form.notes} onChange={(e) => set("notes", e.target.value)}
               rows={3} placeholder="Anything to remember about this vendor…"
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7F77DD] resize-none" />
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7D9E7A] resize-none" />
           </div>
         </div>
 
@@ -87,7 +87,7 @@ function VendorModal({ initial = EMPTY_FORM, title, onSave, onClose }) {
             Cancel
           </button>
           <button onClick={handleSave}
-            className="flex-1 py-2 rounded-lg bg-[#7F77DD] text-white font-semibold text-sm hover:bg-[#6a62c4]">
+            className="flex-1 py-2 rounded-lg bg-[#7D9E7A] text-white font-semibold text-sm hover:bg-[#5E8260]">
             Save Vendor
           </button>
         </div>
@@ -102,7 +102,7 @@ function VendorCard({ vendor, onEdit, onDelete }) {
   const s = STATUS_STYLES[vendor.status] || STATUS_STYLES.contacted;
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 space-y-3 cursor-pointer hover:border-[#7F77DD]/40 transition-colors"
+    <div className="bg-white rounded-2xl shadow-sm border border-[#E8D9C4] p-4 space-y-3 cursor-pointer hover:border-[#7D9E7A]/40 transition-colors"
       onClick={() => setExpanded((p) => !p)}>
 
       {/* top row */}
@@ -118,7 +118,7 @@ function VendorCard({ vendor, onEdit, onDelete }) {
 
       {/* quote */}
       {vendor.quote > 0 && (
-        <p className="text-sm font-semibold text-[#7F77DD]">{fmt(vendor.quote)}</p>
+        <p className="text-sm font-semibold text-[#7D9E7A]">{fmt(vendor.quote)}</p>
       )}
 
       {/* expanded details */}
@@ -133,7 +133,7 @@ function VendorCard({ vendor, onEdit, onDelete }) {
           )}
           <div className="flex gap-2 pt-1">
             <button onClick={() => onEdit(vendor)}
-              className="flex-1 text-xs border border-gray-200 text-gray-500 rounded-lg py-1.5 hover:border-[#7F77DD] hover:text-[#7F77DD] transition-colors">
+              className="flex-1 text-xs border border-gray-200 text-gray-500 rounded-lg py-1.5 hover:border-[#7D9E7A] hover:text-[#7D9E7A] transition-colors">
               ✏️ Edit
             </button>
             <button onClick={() => onDelete(vendor.id)}
@@ -214,7 +214,7 @@ export default function Vendors() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold text-gray-800">🤝 Vendors</h1>
         <button onClick={() => setShowAdd(true)}
-          className="text-sm bg-[#7F77DD] text-white px-4 py-2 rounded-full hover:bg-[#6a62c4] font-medium">
+          className="text-sm bg-[#7D9E7A] text-white px-4 py-2 rounded-full hover:bg-[#5E8260] font-medium">
           + Add Vendor
         </button>
       </div>
@@ -228,7 +228,7 @@ export default function Vendors() {
             { label: "Booked",        val: counts.booked,        color: "text-amber-500" },
             { label: "Paid",          val: counts.paid,          color: "text-green-600" },
           ].map(({ label, val, color }) => (
-            <div key={label} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 text-center">
+            <div key={label} className="bg-white rounded-2xl border border-[#E8D9C4] shadow-sm p-4 text-center">
               <p className={`text-2xl font-bold ${color}`}>{val}</p>
               <p className="text-xs text-gray-400 mt-0.5">{label}</p>
             </div>
@@ -238,7 +238,7 @@ export default function Vendors() {
 
       {vendors.length > 0 && (
         <p className="text-sm text-gray-500">
-          Total quoted: <span className="font-semibold text-[#7F77DD]">
+          Total quoted: <span className="font-semibold text-[#7D9E7A]">
             {Number(totalQuoted).toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 })}
           </span>
         </p>
@@ -251,7 +251,7 @@ export default function Vendors() {
             <span className="text-xs text-gray-400">Category:</span>
             {cats.map((c) => (
               <button key={c} onClick={() => setFilterCat(c)}
-                className={`text-xs px-3 py-1 rounded-full transition-colors ${filterCat === c ? "bg-[#7F77DD] text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}>
+                className={`text-xs px-3 py-1 rounded-full transition-colors ${filterCat === c ? "bg-[#7D9E7A] text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}>
                 {c}
               </button>
             ))}
@@ -260,7 +260,7 @@ export default function Vendors() {
             <span className="text-xs text-gray-400">Status:</span>
             {sts.map((s) => (
               <button key={s} onClick={() => setFilterSt(s)}
-                className={`text-xs px-3 py-1 rounded-full transition-colors capitalize ${filterSt === s ? "bg-[#7F77DD] text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}>
+                className={`text-xs px-3 py-1 rounded-full transition-colors capitalize ${filterSt === s ? "bg-[#7D9E7A] text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}>
                 {s}
               </button>
             ))}

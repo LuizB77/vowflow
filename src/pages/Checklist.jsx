@@ -14,7 +14,7 @@ const MONTHS = [
 
 function Badge({ label }) {
   return (
-    <span className="text-xs bg-[#F4C0D1]/40 text-[#7F77DD] px-2 py-0.5 rounded-full font-medium">
+    <span className="text-xs bg-[#E8C4B8]/40 text-[#7D9E7A] px-2 py-0.5 rounded-full font-medium">
       {label}
     </span>
   );
@@ -131,7 +131,7 @@ export default function Checklist() {
       const allDone = sectionTasks.every((t) => t.completed);
       const wasDone = prevSectionDone.current[value];
       if (allDone && !wasDone) {
-        confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ["#7F77DD", "#F4C0D1", "#fff"] });
+        confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ["#7D9E7A", "#C9A84C", "#E8C4B8", "#fff"] });
       }
       prevSectionDone.current[value] = allDone;
     });
@@ -157,7 +157,7 @@ export default function Checklist() {
         <button
           onClick={handleGenerate}
           disabled={loading}
-          className="text-sm border border-[#7F77DD] text-[#7F77DD] px-4 py-1.5 rounded-full hover:bg-[#7F77DD] hover:text-white transition-colors disabled:opacity-50"
+          className="text-sm border border-[#7D9E7A] text-[#7D9E7A] px-4 py-1.5 rounded-full hover:bg-[#7D9E7A] hover:text-white transition-colors disabled:opacity-50"
         >
           {loading ? "Generating…" : "✨ Regenerate AI Checklist"}
         </button>
@@ -166,7 +166,7 @@ export default function Checklist() {
       {error && <p className="text-red-500 text-sm">{error}</p>}
 
       {loading && (
-        <div className="flex flex-col items-center justify-center py-20 gap-3 text-[#7F77DD]">
+        <div className="flex flex-col items-center justify-center py-20 gap-3 text-[#7D9E7A]">
           <svg className="animate-spin h-8 w-8" viewBox="0 0 24 24" fill="none">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
@@ -184,19 +184,19 @@ export default function Checklist() {
         const isOpen      = collapsed[value] !== true;
 
         return (
-          <div key={value} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div key={value} className="bg-white rounded-2xl shadow-sm border border-[#E8D9C4] overflow-hidden">
             {/* Section header */}
             <button
               onClick={() => setCollapsed((p) => ({ ...p, [value]: !p[value] }))}
               className="w-full flex items-center justify-between px-5 py-4 hover:bg-gray-50 transition-colors"
             >
               <div className="flex items-center gap-3">
-                <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${sectionDone ? "bg-green-400" : "bg-[#7F77DD]"}`} />
+                <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${sectionDone ? "bg-[#C9A84C]" : "bg-[#7D9E7A]"}`} />
                 <span className="font-semibold text-gray-700">{label}</span>
                 <span className="text-xs text-gray-400">
                   {tasks.filter((t) => t.completed).length}/{tasks.length}
                 </span>
-                {sectionDone && <span className="text-xs text-green-500 font-medium">🎉 Done!</span>}
+                {sectionDone && <span className="text-xs text-[#C9A84C] font-medium">🎉 Done!</span>}
               </div>
               <span className="text-gray-400 text-sm">{isOpen ? "▲" : "▼"}</span>
             </button>
@@ -211,7 +211,7 @@ export default function Checklist() {
                       type="checkbox"
                       checked={t.completed}
                       onChange={() => toggleTask(t.id)}
-                      className="w-4 h-4 accent-[#7F77DD] cursor-pointer flex-shrink-0"
+                      className="w-4 h-4 accent-[#7D9E7A] cursor-pointer flex-shrink-0"
                     />
                     <span className={`flex-1 text-sm ${t.completed ? "line-through text-gray-400" : "text-gray-700"}`}>
                       {t.task}
@@ -237,7 +237,7 @@ export default function Checklist() {
                   />
                   <button
                     onClick={() => addCustomTask(value)}
-                    className="text-xs text-[#7F77DD] font-medium hover:underline"
+                    className="text-xs text-[#7D9E7A] font-medium hover:underline"
                   >
                     Add
                   </button>

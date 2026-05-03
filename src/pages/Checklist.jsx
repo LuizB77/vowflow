@@ -20,34 +20,6 @@ function Badge({ label }) {
   );
 }
 
-async function generateChecklist(weddingDate) {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": import.meta.env.VITE_CLAUDE_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "anthropic-dangerous-direct-browser-access": "true",
-    },
-    body: JSON.stringify({
-      model: "claude-sonnet-4-20250514",
-      max_tokens: 2000,
-      system:
-        "You are a wedding planning expert. Given a wedding date, generate a master checklist of tasks grouped by timeframe. Return ONLY a JSON array with no markdown, no backticks, no extra text, in this exact format: [{\"task\": string, \"category\": string, \"monthsBefore\": number}]. Use monthsBefore values: 12, 9, 6, 3, 1, 0 (week of), -1 (day of). Categories: Venue, Catering, Photography, Attire, Music, Flowers, Invitations, Legal, Honeymoon, Misc",
-      messages: [
-        {
-          role: "user",
-          content: `Wedding date: ${weddingDate}. Generate the master checklist now.`,
-        },
-      ],
-    }),
-  });
-  const data = await res.json();
-  const text = data.content?.[0]?.text || "[]";
-  const clean = text.replace(/```json|```/g, "").trim();
-  return JSON.parse(clean);
-}
-
 export default function Checklist() {
   const [wedding, setWedding]         = useState(getActiveWedding());
   const [loading, setLoading]         = useState(false);
@@ -68,25 +40,66 @@ export default function Checklist() {
     }
   }, [wedding?.id]);
 
-  async function handleGenerate() {
+  function handleGenerate() {
     if (!wedding) return;
     setLoading(true);
-    setError("");
-    try {
-      const items = await generateChecklist(wedding.weddingDate);
-      const withIds = items.map((t) => ({
-        ...t,
-        id: crypto.randomUUID(),
-        completed: false,
-      }));
-      updateWedding(wedding.id, (w) => ({ ...w, checklist: withIds }));
-      refresh();
-    } catch (e) {
-      setError("Failed to generate checklist. Check your API key and try again.");
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
+    const items = [
+      { task: "Set wedding budget and guest count estimate", category: "Misc", monthsBefore: 12 },
+      { task: "Book wedding venue", category: "Venue", monthsBefore: 12 },
+      { task: "Research and book wedding photographer", category: "Photography", monthsBefore: 12 },
+      { task: "Research and book caterer", category: "Catering", monthsBefore: 12 },
+      { task: "Book wedding videographer", category: "Photography", monthsBefore: 12 },
+      { task: "Research wedding dress designers and shops", category: "Attire", monthsBefore: 12 },
+      { task: "Book ceremony officiant", category: "Legal", monthsBefore: 12 },
+      { task: "Start honeymoon planning research", category: "Honeymoon", monthsBefore: 12 },
+      { task: "Order wedding dress", category: "Attire", monthsBefore: 9 },
+      { task: "Book wedding band or DJ", category: "Music", monthsBefore: 9 },
+      { task: "Book florist", category: "Flowers", monthsBefore: 9 },
+      { task: "Finalize guest list", category: "Invitations", monthsBefore: 9 },
+      { task: "Order groomsmen and bridesmaids attire", category: "Attire", monthsBefore: 9 },
+      { task: "Book hair and makeup artists", category: "Attire", monthsBefore: 9 },
+      { task: "Schedule wedding cake tastings", category: "Catering", monthsBefore: 9 },
+      { task: "Send save-the-dates", category: "Invitations", monthsBefore: 9 },
+      { task: "Book honeymoon travel and accommodations", category: "Honeymoon", monthsBefore: 6 },
+      { task: "Order wedding invitations", category: "Invitations", monthsBefore: 6 },
+      { task: "Schedule venue walkthrough", category: "Venue", monthsBefore: 6 },
+      { task: "Arrange wedding transportation", category: "Misc", monthsBefore: 6 },
+      { task: "Register for gifts", category: "Misc", monthsBefore: 6 },
+      { task: "Book rehearsal dinner venue", category: "Venue", monthsBefore: 6 },
+      { task: "Meet with officiant to plan ceremony", category: "Legal", monthsBefore: 6 },
+      { task: "Schedule dress fittings", category: "Attire", monthsBefore: 6 },
+      { task: "Mail wedding invitations", category: "Invitations", monthsBefore: 3 },
+      { task: "Finalize catering menu", category: "Catering", monthsBefore: 3 },
+      { task: "Order wedding cake", category: "Catering", monthsBefore: 3 },
+      { task: "Purchase wedding rings", category: "Legal", monthsBefore: 3 },
+      { task: "Book accommodations for out-of-town guests", category: "Misc", monthsBefore: 3 },
+      { task: "Final dress fitting", category: "Attire", monthsBefore: 3 },
+      { task: "Create seating chart", category: "Misc", monthsBefore: 3 },
+      { task: "Write personal vows", category: "Legal", monthsBefore: 3 },
+      { task: "Confirm all vendor bookings", category: "Misc", monthsBefore: 1 },
+      { task: "Apply for marriage license", category: "Legal", monthsBefore: 1 },
+      { task: "Prepare vendor payment schedule", category: "Misc", monthsBefore: 1 },
+      { task: "Create day-of timeline", category: "Misc", monthsBefore: 1 },
+      { task: "Send final guest count to caterer", category: "Catering", monthsBefore: 1 },
+      { task: "Pick up wedding dress", category: "Attire", monthsBefore: 1 },
+      { task: "Attend rehearsal and rehearsal dinner", category: "Misc", monthsBefore: 0 },
+      { task: "Deliver vendor payments and tips", category: "Misc", monthsBefore: 0 },
+      { task: "Pack for honeymoon", category: "Honeymoon", monthsBefore: 0 },
+      { task: "Delegate day-of tasks to wedding party", category: "Misc", monthsBefore: 0 },
+      { task: "Eat breakfast and stay hydrated", category: "Misc", monthsBefore: -1 },
+      { task: "Give rings to best man / maid of honor", category: "Legal", monthsBefore: -1 },
+      { task: "Do final venue walkthrough with coordinator", category: "Venue", monthsBefore: -1 },
+      { task: "Take portraits with wedding party", category: "Photography", monthsBefore: -1 },
+      { task: "Enjoy every moment — you only do this once!", category: "Misc", monthsBefore: -1 },
+    ];
+    const withIds = items.map((t) => ({
+      ...t,
+      id: crypto.randomUUID(),
+      completed: false,
+    }));
+    updateWedding(wedding.id, (w) => ({ ...w, checklist: withIds }));
+    refresh();
+    setLoading(false);
   }
 
   function toggleTask(taskId) {
